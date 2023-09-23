@@ -48,16 +48,22 @@ def read_website(url = "https://physics.uiowa.edu/history/spaceflight-instrument
         mission_table.append([mission_name, mission_remarks, mission_launch])
     return(mission_table)
 
-def find_table(html):
+def find_table(html,include_rockets=False):
     # find the table in the html
     # return beginning and end positions
 
     table_start = re.search(r'<table class="xl679643">', html).start()
     table_end = re.search(r'</table>', html[table_start:]).start()+table_start
-    return (table_start, table_end)
+    spacecraft_end = re.search(r'<td class="xl749643">', html[table_start:]).start()+table_start-4
+    if include_rockets:
+        end = table_end
+    else:
+        end = spacecraft_end
+    return (table_start, end)
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     mission_table = read_website()
     print(mission_table)
+    print(f'I found {len(mission_table)} missions')

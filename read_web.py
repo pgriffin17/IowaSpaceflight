@@ -1,6 +1,11 @@
 # This is python code for Iowa Spaceflight by jake writen on 2023-09-23
 # This code copies the Iowa Spaceflight page into a table for querying NASA Horizons
 
+# USAGE
+# from read_web import read_website
+# mission_table = read_website()
+# mission table is a list of lists with string entries for [name, remarks, launch date]
+
 from urllib.request import urlopen
 import re # regular expressions
 import time # for getting today's date
@@ -55,6 +60,4 @@ def find_table(html):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     mission_table = read_website()
-    print(mission_table[30:35])
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(mission_table)

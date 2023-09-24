@@ -9,7 +9,8 @@ content = './UI_instruments_in_space.jpg' #
 my_theme = {
   "palette": {
     "background": {"default": "#000000"},
-    "primary": {"main": "#FFCD00"}
+    "primary": {"main": "#FFCD00"},
+    "secondary": {"main": "#00664F"},
   }
 }
 

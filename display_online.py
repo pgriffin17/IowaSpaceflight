@@ -49,18 +49,23 @@ stylekit = {
 text = "Original text"
 dt = datetime.datetime.now()
 active_sc_dictionary = celestrak.generate_active_dict() ##TODO connect to celestrak.py
+# Remove NORAD_CAT_ID column
+active_sc_dictionary.pop('NORAD_CAT_ID')
+# Clean up dictionary column names for display
+active_sc_dictionary = {k.replace('_', ' '): v for k, v in active_sc_dictionary.items()}
+# Set to capitalize first letter of each word
+active_sc_dictionary = {k.title(): v for k, v in active_sc_dictionary.items()}
+
 #make a copy of the dictionary with only dates in the future
 #active_sc_dictionary_for_display = {k: v for k, v in active_sc_dictionary.items() if v > dt}
 
 page = """
 
-# **Iowa Spaceflight**{: .color-primary} with *Taipy*
-
-My text: <|{text}|>
-
-<|{text}|input|>
+# **Iowa Spaceflight**{: .color-primary}
 
 <|{dt}|date|>
+
+## **Spacecraft with UIowa instruments currently in space**{: .color-primary}
 
 <|{active_sc_dictionary}|table|>
 
@@ -68,7 +73,7 @@ My text: <|{text}|>
 
 Find more information at [Iowa Spaceflight](https://physics.uiowa.edu/history/spaceflight-instruments)
 
-<|{content}|image|>
+<|{content}|image|width=700px|hover_text=UIowa Instruments in Space|>
 
 """
-Gui(page).run(title="Iowa Spaceflight", use_reloader=True, theme=my_theme, watermark='', stylekit=stylekit)
+Gui(page).run(title="Iowa Spaceflight", use_reloader=True, theme=my_theme, stylekit=stylekit)

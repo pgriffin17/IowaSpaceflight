@@ -7,6 +7,7 @@ import urllib.request
 import read_web
 from datetime import datetime
 import re
+import os
 
 '''
 Usage:
@@ -67,9 +68,10 @@ def create_mission_table():
     return missionTable
 
 def download_satcat():
-    url = "https://celestrak.com/pub/satcat.csv"
-    filename = "satcat.csv"
-    urllib.request.urlretrieve(url, filename)
+    if not os.path.exists("satcat.csv"):
+        url = "https://celestrak.com/pub/satcat.csv"
+        filename = "satcat.csv"
+        urllib.request.urlretrieve(url, filename)
 
 def read_satcat():
     satcat = pd.read_csv("satcat.csv")

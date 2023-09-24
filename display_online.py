@@ -3,6 +3,8 @@
 from taipy.gui import Gui
 import datetime
 import celestrak
+import plot
+import pandas as pd
 
 content = './UI_instruments_in_space.jpg' #
 
@@ -12,6 +14,29 @@ my_theme = {
     "primary": {"main": "#FFCD00"},
     "secondary": {"main": "#00664F"},
   }
+}
+
+planet_coords = plot.getPlanetData()
+
+voyager_coords = plot.getVoyagerData()
+
+# Add voyager data to planet data using concat
+planet_coords = pd.concat([planet_coords, voyager_coords])
+
+layout = {
+    "width": 700,
+    "height": 700,
+    "title": "Iowa Spaceflight",
+    "titlefont": {"size": 20, "color": "#FFCD00"},
+    "hovermode": "closest",
+    "xaxis": {
+        "title": "X (AU)",
+        "range": [-40, 40],
+    },
+    "yaxis": {
+        "title": "Y (AU)",
+        "range": [-40, 40],
+    },
 }
 
 stylekit = {
@@ -38,6 +63,8 @@ My text: <|{text}|>
 <|{dt}|date|>
 
 <|{active_sc_dictionary}|table|>
+
+<|{planet_coords}|chart|mode=markers|layout={layout}|>
 
 Find more information at [Iowa Spaceflight](https://physics.uiowa.edu/history/spaceflight-instruments)
 

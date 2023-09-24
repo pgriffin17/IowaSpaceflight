@@ -6,6 +6,20 @@ import celestrak
 
 content = './UI_instruments_in_space.jpg' #
 
+my_theme = {
+  "palette": {
+    "background": {"default": "#000000"},
+    "primary": {"main": "#FFCD00"}
+  }
+}
+
+stylekit = {
+  "color_primary": "#FFCD00",
+  "color_secondary": "#00664F",
+  "color_background_dark": "#000000",
+  "color_paper_dark": "#222222",
+}
+
 text = "Original text"
 dt = datetime.datetime.now()
 active_sc_dictionary = celestrak.generate_active_dict() ##TODO connect to celestrak.py
@@ -28,4 +42,4 @@ Find more information at [Iowa Spaceflight](https://physics.uiowa.edu/history/sp
 <|{content}|image|>
 
 """
-Gui(page).run()
+Gui(page).run(title="Iowa Spaceflight", use_reloader=True, theme=my_theme, watermark='', stylekit=stylekit)

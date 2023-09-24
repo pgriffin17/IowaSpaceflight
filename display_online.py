@@ -28,7 +28,8 @@ active_sc_dictionary = celestrak.generate_active_dict() ##TODO connect to celest
 #active_sc_dictionary_for_display = {k: v for k, v in active_sc_dictionary.items() if v > dt}
 
 page = """
-# Iowa Spaceflight with *Taipy*
+
+# **Iowa Spaceflight**{: .color-primary} with *Taipy*
 
 My text: <|{text}|>
 

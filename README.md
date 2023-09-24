@@ -15,4 +15,4 @@ Coal, Aidan, Jacob, Philip
 - taipy
 
 ## Special Thanks
-Special thanks to the University of Iowa Department of Physics & Astronomy for providing this list of spacecraft missions with instruments designed at the University of Iowa.
+Special thanks to the University of Iowa Department of Physics & Astronomy for providing this list of spacecraft missions with instruments designed at the University of Iowa, as well as NASA JPL for their Horizons web service.

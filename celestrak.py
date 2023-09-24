@@ -94,7 +94,7 @@ def generate_active_list(display=False):
     # If display = true, remove certain columns
     if display:
         # Remove all columns except "OBJECT_NAME" "OBJECT_ID" "NORAD_CAT_ID" "LAUNCH_DATE" "OWNER" "ORBIT_CENTER"
-        active_df = active_df[['OBJECT_NAME', 'OBJECT_ID', 'NORAD_CAT_ID', 'LAUNCH_DATE', 'OWNER', 'ORBIT_CENTER']]
+        activeList = activeList[['OBJECT_NAME', 'OBJECT_ID', 'NORAD_CAT_ID', 'LAUNCH_DATE', 'OWNER', 'ORBIT_CENTER']]
 
     return activeList
 

@@ -17,11 +17,43 @@ my_theme = {
 }
 
 planet_coords = plot.getPlanetData()
+data = planet_coords.to_dict(orient='list')
+print(data)
+#planet_coords = [{'x': data['x'], 'y': data['y'], 'z': data['z'], 'name': planet_coords.index.values.tolist()}]
+planet_coords = [{'x': data['x'], 'y': data['y']}]
+# Add two nan values to the end of each list
+for i in range(len(planet_coords)):
+    planet_coords[i]['x'].append(float('nan'))
+    planet_coords[i]['y'].append(float('nan'))
+    planet_coords[i]['x'].append(float('nan'))
+    planet_coords[i]['y'].append(float('nan'))
 
 voyager_coords = plot.getVoyagerData()
+data = voyager_coords.to_dict(orient='list')
+#voyager_coords = [{'x': data['x'], 'y': data['y'], 'z': data['z'], 'name': voyager_coords.index.values.tolist()}]
+voyager_coords = [{'x': data['x'], 'y': data['y']}]
+for j in range(9):
+    for i in range(len(voyager_coords)):
+        voyager_coords[i]['x'].insert(0, float('nan'))
+        voyager_coords[i]['y'].insert(0, float('nan'))
+        #voyager_coords[i]['z'].append(float('nan'))
 
-# Add voyager data to planet data using concat
-planet_coords = pd.concat([planet_coords, voyager_coords])
+#Add voyager data to planet data by concatenating the lists
+object_coords = planet_coords + voyager_coords
+
+markers = [
+    # First data set is represented by increasingly large
+    # disks, getting more and more opaque
+    {
+        "color": "#636efa"
+    },
+    # Second data set is represented with a different symbol
+    # for each data point
+    {
+        "color": "#FFCD00"
+    }
+]
+
 
 layout = {
     "width": 700,
@@ -37,6 +69,17 @@ layout = {
         "title": "Y (AU)",
         "range": [-40, 40],
     },
+    "annotations": [
+        # Annotation for local maximum (x = -1)
+        {
+            "text": "Earth",
+            "font": {
+                "size": 20
+            },
+            "x": planet_coords[0]['x'][2],
+            "y": planet_coords[0]['y'][2],
+        },
+    ]
 }
 
 stylekit = {
@@ -69,7 +112,7 @@ page = """
 
 <|{active_sc_dictionary}|table|>
 
-<|{planet_coords}|chart|mode=markers|layout={layout}|>
+<|{object_coords}|chart|mode=markers|marker={markers}|layout={layout}|>
 
 Find more information at [Iowa Spaceflight](https://physics.uiowa.edu/history/spaceflight-instruments)
 

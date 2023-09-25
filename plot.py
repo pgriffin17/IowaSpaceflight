@@ -49,7 +49,7 @@ def getPlanetData():
     return planetData
 
 def getVoyagerData():
-    spacecraft = ["Voyager 1", "Voyager 2"]
+    spacecraft = ["Voyager 1", "Voyager 2", "Pioneer 11", "Pioneer 10"]
     spacecraftVectors = {}
     for craft in spacecraft:
         spacecraftVectors[craft] = getSingleVector(craft)
